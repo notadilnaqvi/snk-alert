@@ -1,0 +1,16 @@
+{
+  "name": "snk-alert",
+  "version": "1.0.0",
+  "description": "Sends an email alert whenever a new chapter is published on r/ShingekiNoKyojin",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adil Naqvi",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "moment": "^2.27.0",
+    "nodemailer": "^6.4.11"
+  }
+}
