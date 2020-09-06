@@ -1,5 +1,4 @@
 require("dotenv").config();
-const moment = require('moment');
 const fetch = require('node-fetch');
 const nodemailer = require("nodemailer");
 

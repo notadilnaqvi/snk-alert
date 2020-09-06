@@ -4,13 +4,17 @@
   "description": "Sends an email alert whenever a new chapter is published on r/ShingekiNoKyojin",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "Adil Naqvi",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "moment": "^2.27.0",
+    "express": "^4.17.1",
     "nodemailer": "^6.4.11"
+  },
+  "engines": {
+    "node": "12.16.2"
   }
 }
