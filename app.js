@@ -47,7 +47,7 @@ function sendEmail(_url) {
         from: process.env.GMAIL_USER,
         to: process.env.GMAIL_RECIPIENT,
         subject: "New SNK Chapter",
-        html: `Oi,<br><br>A new ⚔️ SNK ⚔️ chapter just dropped. Go read at <a style="text-decoration: none" href = ${_url}>this link</a>.<br><br><a style="text-decoration: none" href = "https://github.com/notadilnaqvi/snk-alert">– SNK Alert Bot</a><br><p style="opacity: 0.4">Am I not working as inteded? Post an issue <a style="text-decoration: none" href = ${_url}><b>here</b></a>.</p>`
+        html: `Oi,<br><br>A new ⚔️ SNK ⚔️ chapter just dropped. Go read at <a style="text-decoration: none" href = ${_url}>this link</a>.<br><br><a style="text-decoration: none" href = "https://github.com/notadilnaqvi/snk-alert">– SNK Alert Bot</a><br><p style="opacity: 0.4">Am I not working as inteded? Post an issue <a style="text-decoration: none" href = "https://github.com/notadilnaqvi/snk-alert/issues"><b>here</b></a>.</p>`
     }
 
     transporter.sendMail(mailOptions);
