@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const nodemailer = require("nodemailer");
 
 //reddit api
-const URL = "https://api.reddit.com/user/SNKbot/submitted?limit=1"
+const URL = "https://api.reddit.com/user/sahnbk/submitted?limit=1"
 
 //regex to match u/SNKbot post title
 const re = /\[New Chapter Spoilers\] Chapter \d\d\d RELEASE Megathread!/;
