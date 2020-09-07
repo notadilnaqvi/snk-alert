@@ -20,7 +20,8 @@ setInterval(() => {
             //1. has the latest post been previously detected by this program?
             //2. does the post have "Latest Chapter" flair?
             //3. does the post title match the regex?
-            if(child.data.name != oldPost && child.data.link_flair_text == "Latest Chapter" && child.data.title.match(re)){
+            // && child.data.link_flair_text == "Latest Chapter" 
+            if(child.data.name != oldPost && child.data.title.match(re)){
                 //hold detected post's name in memory
                 oldPost = child.data.name;
                 //send email
