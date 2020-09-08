@@ -2,29 +2,28 @@ require("dotenv").config();
 const fetch = require('node-fetch');
 const nodemailer = require("nodemailer");
 
-//reddit api
-const URL = "https://api.reddit.com/user/sahnbk/submitted?limit=1"
+// reddit api
+const URL = "https://api.reddit.com/user/SNKbot/submitted?limit=1"
 
-//regex to match u/SNKbot post title
+// regex to match u/SNKbot post title
 const re = /\[New Chapter Spoilers\] Chapter \d\d\d RELEASE Megathread!/;
 let oldPost = "";
 
-//check for new post every 30 seconds
+// check for new chapter post every 30 seconds, send email if detected
 setInterval(() => {
     (async () => {
         let response = await fetch(URL);
         json = await response.json();
         
         json.data.children.forEach(child => {
-            //checks 3 things:
-            //1. has the latest post been previously detected by this program?
-            //2. does the post have "Latest Chapter" flair?
-            //3. does the post title match the regex?
-            // && child.data.link_flair_text == "Latest Chapter" 
-            if(child.data.name != oldPost && child.data.title.match(re)){
-                //hold detected post's name in memory
+            // checks 3 things:
+            // 1. has the latest post been previously detected by this program?
+            // 2. does the post have "Latest Chapter" flair?
+            // 3. does the post title match the regex?
+            if(child.data.name != oldPost && child.data.link_flair_text == "Latest Chapter" && child.data.title.match(re)){
+                // hold detected post's name in memory
                 oldPost = child.data.name;
-                //send email
+                // send email
                 sendEmail(child.data.url);
                 console.log("Email Sent! New chapter: " + child.data.name);
             }
@@ -38,7 +37,7 @@ function sendEmail(_url) {
         port: 465,
         secure: true,
         auth: {
-            //never hardcode sensitive data, always use environment variables
+            // never hardcode sensitive data, always use environment variables
             user: process.env.GMAIL_USER,
             pass:  process.env.GMAIL_PASSWORD,
         },
