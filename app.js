@@ -4,40 +4,35 @@ const nodemailer = require("nodemailer");
 const MongoClient = require('mongodb').MongoClient;
 
 // reddit api
-const URL = "https://api.reddit.com/user/sahnbk/submitted?limit=1";
+const URL = "https://api.reddit.com/user/SNKBot/submitted?limit=1";
 
 // regex to match u/SNKbot post title
 const re = /\[New Chapter Spoilers\] Chapter \d\d\d RELEASE Megathread!/;
 
 // main function, runs every 2 mins
+console.log("Starting the worker...\n");
 setInterval(() => {
     (async () => {
-        console.log("Starting app...");
-
         // get the latest u/SNKBot post
         let response = await fetch(URL);
         let json = await response.json();
         let post = json.data.children[0];
-        console.log("Got latest post...");
 
         // connect to database
         const client = await setUpMongoClient();
         await client.connect();
         let collection = client.db("snk-alert").collection("postNameCollection");
-        console.log("Conneted to client...");
 
         // check 3 things:
         // 1. has the latest post been previously detected by this program? check the database
         // 2. does the post have "Latest Chapter" flair?
         // 3. does the post title match the regex?
         let flag = await checkInDatabase(post.data.name, collection);
-        if (!flag && post.data.title.match(re)) { // && post.data.link_flair_text == "OC"
+        if (!flag && post.data.link_flair_text == "Latest Chapter" && post.data.title.match(re)) { // 
             await addToDatabase(post.data.name, collection); // add post to database
             sendEmail(post.data.url); // send email
-        }
-        
+        }        
         client.close();
-        console.log("Finished!\n");
     })();
 }, 120000);
 
@@ -57,7 +52,7 @@ function sendEmail(_url) {
         from: process.env.GMAIL_USER,
         to: process.env.GMAIL_RECIPIENT,
         cc: process.env.GMAIL_CC,
-        subject: "Testing app",
+        subject: "New SNK Chapter",
         html: `Oi,<br><br>A new ⚔️ SNK ⚔️ chapter just dropped. Go read at <a style="text-decoration: none" href = ${_url}>this link</a>.<br><br><a style="text-decoration: none" href = "https://github.com/notadilnaqvi/snk-alert">– SNK Alert Bot</a><br><p style="opacity: 0.4">Am I not working as inteded? Post an issue <a style="text-decoration: none" href = "https://github.com/notadilnaqvi/snk-alert/issues"><i>here</i></a>.</p>`
     };
 
