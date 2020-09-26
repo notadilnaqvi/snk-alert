@@ -10,7 +10,7 @@ const URL = "https://api.reddit.com/user/SNKBot/submitted?limit=1";
 const re = /\[New Chapter Spoilers\] Chapter \d\d\d RELEASE Megathread!/;
 
 // main function, runs every 2 mins
-console.log("Starting the worker...\n");
+console.log("\nStarting the worker...");
 setInterval(() => {
     (async () => {
         // get the latest u/SNKBot post
@@ -57,7 +57,7 @@ function sendEmail(_url) {
     };
 
     transporter.sendMail(mailOptions);
-    console.log(`Email sent at ${new Date()}`);
+    console.log("Email sent!");
 }
 
 async function setUpMongoClient() {
@@ -86,5 +86,5 @@ async function addToDatabase(_postName, _collection) {
     await _collection.insertOne({
         "postName": _postName
     });
-    console.log(`Added ${_postName} on ${new Date()}`);
+    console.log(`Added ${_postName}...`);
 }
