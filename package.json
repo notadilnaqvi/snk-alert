@@ -4,7 +4,6 @@
   "description": "Sends an email alert whenever a new chapter is published on r/ShingekiNoKyojin",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "author": "Adil Naqvi",
