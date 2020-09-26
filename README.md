@@ -24,12 +24,12 @@ This app sends me an email alert whenever that happens
 3. From here, disable the default `web` dyno and add and enable a `worker` dyno
 
 4. Now go to the Settings tab and add the following environment variables:
-  * GMAIL_USER : *your Gmail ID*
-  * GMAIL_PASSWORD : *your Gmail password*
-  * GMAIL_RECEPIENT : *receient's Email ID*
-  * GMAIL_CC : *Email ID to cc the Email to*
-  * DB_USER : *MongoDB user ID*
-  * DB_PASSWORD : *MongoDB password*
+   * GMAIL_USER : *your Gmail ID*
+   * GMAIL_PASSWORD : *your Gmail password*
+   * GMAIL_RECEPIENT : *receient's Email ID*
+   * GMAIL_CC : *Email ID to cc the Email to*
+   * DB_USER : *MongoDB user ID*
+   * DB_PASSWORD : *MongoDB password*
   
 5. Run `git push heroku master`. Your app should now be up and running
 
