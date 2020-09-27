@@ -17,6 +17,7 @@ This app sends me an email alert whenever that happens
 * If all checks pass it sends the email and adds the post to a database
 
 ## How to use it
+### Run on Heroku
 1. Run `git clone https://github.com/notadilnaqvi/snk-alert.git`
 
 2. Then run `heroku create`. This will create a new app visible on your Heroku dashboard. Open the app and go to the Resources tab
@@ -30,10 +31,25 @@ This app sends me an email alert whenever that happens
    * GMAIL_CC : *Email ID to cc the Email to*
    * DB_USER : *MongoDB user ID*
    * DB_PASSWORD : *MongoDB password*
-  
+
 5. Run `git push heroku master`. Your app should now be up and running
 
 6. Run `heroku logs --tail` to see the latest logs
+
+ ### Run locally on your machine
+ 1. Run `git clone https://github.com/notadilnaqvi/snk-alert.git`. This downloads the this repository on your machine
+ 
+ 2. Then run `npm install`. This downloads all the npm packages needed to run this Node app. This might take sometime depending on your internet connection
+ 
+ 3. Inside the snk-alert folder, make a .env file. Open this file and add the following environment variables:
+    * GMAIL_USER = *your Gmail ID*
+    * GMAIL_PASSWORD = *your Gmail password*
+    * GMAIL_RECEPIENT = *receient's Email ID*
+    * GMAIL_CC = *Email ID to cc the Email to*
+    * DB_USER = *MongoDB user ID*
+    * DB_PASSWORD = *MongoDB password*
+   
+  4. Now run `node app.js`. Your app should now be up and running
 
 ## Why don't I, you know, just turn Reddit notifications on?
 Because.
