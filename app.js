@@ -10,7 +10,7 @@ const URL = "https://api.reddit.com/user/SNKBot/submitted?limit=1";
 const re = /\[New Chapter Spoilers\] Chapter \d\d\d RELEASE Megathread!/;
 
 // main function, runs every 2 mins
-console.log("\nStarting the worker...");
+console.log("\nWorker started...");
 setInterval(() => {
     (async () => {
         // get the latest u/SNKBot post
@@ -28,9 +28,9 @@ setInterval(() => {
         // 2. does the post have "Latest Chapter" flair?
         // 3. does the post title match the regex?
         let flag = await checkInDatabase(post.data.name, collection);
-        if (!flag && post.data.link_flair_text == "Latest Chapter" && post.data.title.match(re)) { // 
-            await addToDatabase(post.data.name, collection); // add post to database
-            sendEmail(post.data.url); // send email
+        if (!flag && post.data.link_flair_text == "Latest Chapter" && post.data.title.match(re)) { 
+            await addToDatabase(post.data.name, collection);
+            sendEmail(post.data.url);
         }        
         client.close();
     })();
@@ -57,7 +57,7 @@ function sendEmail(_url) {
     };
 
     transporter.sendMail(mailOptions);
-    console.log("Email sent!");
+    console.log("Email sent...");
 }
 
 async function setUpMongoClient() {
