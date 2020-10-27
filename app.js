@@ -29,7 +29,7 @@ setInterval(() => {
         // 2. does the post have "Latest Chapter" flair?
         // 3. does the post title match the regex?
         let flag = await checkInDatabase(post.data.name, collection);
-        if (!flag && post.data.link_flair_text == "Latest Chapter" && (post.data.title.match(re) || (post.data.title.match(re2))) { 
+        if (!flag && post.data.link_flair_text == "Latest Chapter" && (post.data.title.match(re) || (post.data.title.match(re2)))) { 
             await addToDatabase(post.data.name, collection);
             sendEmail(post.data.url);
         }        
