@@ -8,6 +8,7 @@ const URL = "https://api.reddit.com/user/SNKBot/submitted?limit=1";
 
 // regex to match u/SNKbot post title
 const re = /\[New Chapter Spoilers\] Chapter \d\d\d RELEASE Megathread!/;
+const re2 = /\[New Chapter Spoilers\] Chapter \d\d\d Release Megathread/; //template was changed by u/SNKBot
 
 // main function, runs every 2 mins
 console.log("\nWorker started...");
@@ -28,7 +29,7 @@ setInterval(() => {
         // 2. does the post have "Latest Chapter" flair?
         // 3. does the post title match the regex?
         let flag = await checkInDatabase(post.data.name, collection);
-        if (!flag && post.data.link_flair_text == "Latest Chapter" && post.data.title.match(re)) { 
+        if (!flag && post.data.link_flair_text == "Latest Chapter" && (post.data.title.match(re) || (post.data.title.match(re2)) { 
             await addToDatabase(post.data.name, collection);
             sendEmail(post.data.url);
         }        
